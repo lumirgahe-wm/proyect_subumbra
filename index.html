@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urbes Subumbra</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <!-- CONTENEDOR PRINCIPAL DEL JUEGO -->
+    <div id="game-container">   
+        <!-- Pantalla de título + selección de personaje -->
+        <div id="story-title">
+            <h1>Urbes Subumbra</h1>
+
+            <div id="character-select">
+                <p>Elige tu personaje:</p>
+
+                <div class="character-grid">
+                    <!-- Personaje 1 -->
+                    <button class="character-btn" data-character="Gabriel">
+                        <img src="imagenes/gabriel.png" class="character-img" alt="Gabriel">
+                        <span>Gabriel</span>
+                    </button>
+
+                    <!-- Personaje 2 -->
+                    <button class="character-btn" data-character="Edward">
+                        <img src="imagenes/edward.png" class="character-img" alt="Edward">
+                        <span>Edward</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenedor donde se muestra la historia -->
+        <div id="passage-container" class="hidden">
+            <div id="passage-content"></div>
+            <div id="passage-choices"></div>
+        </div>
+    </div>
+
+    <!-- Flash de luz -->
+    <div id="light-flash" class="hidden"></div>
+
+    <!-- Contenedor opcional de video (por ahora no lo usamos en JS, solo está listo) -->
+    <div id="video-screen" class="hidden">
+        <video id="intro-video" src="imagenes/Intro.mp4" preload="auto"></video>
+    </div>
+
+    <!-- Precargar audio -->
+    <audio id="ghost-scream" src="sounds/terror-scream-grito-terror-101302.mp3" preload="auto"></audio>
+    <audio id="step-sound" src="sounds/pasos-suaves-02-68341.mp3" preload="auto"></audio>
+    <audio id="run-sound" src="sounds/corriendo.mp3" preload="auto"></audio>
+    <audio id="criying-sound" src="sounds/llanto.mp3" preload="auto"></audio>
+    <audio id="ghost-scream2" src="sounds/grito1.mp3" preload="auto"></audio>
+    <audio id="ghost-scream3" src="sounds/grito3.mp3" preload="auto"></audio>
+    <audio id="moan-sound" src="sounds/gemido.mp3" preload="auto"></audio>
+    <audio id="breat-sound" src="sounds/respiracion.mp3" preload="auto"></audio>
+    <audio id="heart-sound" src="sounds/corazon.mp3" preload="auto"></audio>
+    <audio id="voice-sound" src="sounds/voz.mp3" preload="auto"></audio>
+    <audio id="call-sound" src="sounds/llamada.mp3" preload="auto"></audio>
+
+    <script src="story-data.js"></script>
+    <script src="game-engine.js"></script>
+</body>
+</html>
