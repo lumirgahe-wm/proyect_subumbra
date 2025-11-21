@@ -8,8 +8,18 @@
 </head>
 <body>
     
+    <!-- ============================= -->
+    <!--  PANTALLA DE VIDEO INICIAL   -->
+    <!-- ============================= -->
+    <div id="intro-screen">
+        <video id="intro-start-video" src="videos/Abistamiento.mp4" autoplay muted playsinline></video>
+
+        <button id="continue-btn">Continuar</button>
+    </div>
+
     <!-- CONTENEDOR PRINCIPAL DEL JUEGO -->
-    <div id="game-container">   
+    <div id="game-container" class="hidden">   
+        
         <!-- Pantalla de título + selección de personaje -->
         <div id="story-title">
             <h1>Urbes Subumbra</h1>
@@ -43,7 +53,7 @@
     <!-- Flash de luz -->
     <div id="light-flash" class="hidden"></div>
 
-    <!-- Contenedor opcional de video (por ahora no lo usamos en JS, solo está listo) -->
+    <!-- Contenedor opcional de video -->
     <div id="video-screen" class="hidden">
         <video id="intro-video" src="imagenes/Intro.mp4" preload="auto"></video>
     </div>
@@ -63,5 +73,18 @@
 
     <script src="story-data.js"></script>
     <script src="game-engine.js"></script>
+
+    <!-- Script que controla el video inicial -->
+    <script>
+        const introScreen = document.getElementById("intro-screen");
+        const gameContainer = document.getElementById("game-container");
+        const continueBtn = document.getElementById("continue-btn");
+
+        continueBtn.addEventListener("click", () => {
+            introScreen.classList.add("hidden");
+            gameContainer.classList.remove("hidden");
+        });
+    </script>
+
 </body>
 </html>
