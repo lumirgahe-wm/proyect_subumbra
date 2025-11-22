@@ -9,6 +9,22 @@
 
 <body>
 
+<div id="video-screen">
+    <video id="intro-video" src="Videos/Abistamiento.mp4" autoplay muted playsinline></video>
+    <button id="continue-btn">Continuar</button>
+</div>
+
+<!-- PANTALLA DE SELECCIÓN DE PERSONAJE -->
+<div id="character-select" class="hidden">
+    <h1>Urbes Subumbra</h1>
+    <h2>Selecciona tu personaje</h2>
+
+    <div class="characters">
+        <button class="char">Personaje 1</button>
+        <button class="char">Personaje 2</button>
+        <button class="char">Personaje 3</button>
+    </div>
+</div>
     <!-- 🔥 PANTALLA DE VIDEO INICIAL -->
     <div id="video-screen">
         <video id="intro-video" src="Videos/Abistamiento.mp4" autoplay muted playsinline></video>
@@ -68,6 +84,14 @@
 
     <!-- 🔥 SCRIPT PARA CONTROLAR VIDEO INICIAL -->
     <script>
+        document.getElementById("continue-btn").addEventListener("click", function () {
+            document.getElementById("video-screen").classList.add("hidden");
+            document.getElementById("character-select").classList.remove("hidden");
+        });
+        
+</script>
+    <script>
+        
         const videoScreen = document.getElementById('video-screen');
         const continueBtn = document.getElementById('continue-btn');
         const gameContainer = document.getElementById('game-container');
