@@ -1,28 +1,3 @@
-// Video logic override
-window.addEventListener("load", () => {
-    const video1 = document.getElementById("video-uno");
-    const video2 = document.getElementById("video-dos");
-    const btn1 = document.getElementById("btn-continuar-1");
-    const btn2 = document.getElementById("btn-continuar-2");
-    const introScreen = document.getElementById("video-intro");
-    const newsScreen = document.getElementById("video-noticiero");
-    const game = document.getElementById("game-container");
-
-    introScreen.classList.remove("hidden");
-    video1.play();
-
-    btn1.onclick = () => {
-        introScreen.classList.add("hidden");
-        newsScreen.classList.remove("hidden");
-        video2.play();
-    };
-
-    btn2.onclick = () => {
-        newsScreen.classList.add("hidden");
-        game.classList.remove("hidden");
-        loadPassage(storyData.startPassage);
-    };
-});
 // DOM Elements
 const storyTitle = document.getElementById('story-title');
 const passageContainer = document.getElementById('passage-container');
@@ -40,6 +15,7 @@ const breatsound = document.getElementById('breat-sound');
 const voicesound = document.getElementById('voice-sound');
 const callsound = document.getElementById('call-sound');
 
+const characterButtons = document.querySelectorAll('.character-btn');
 
 // Game state
 let currentPassage = null;
@@ -52,9 +28,12 @@ let selectedCharacter = null;
 const soundEffects = {};
 
 // Selección de personaje: al hacer clic se inicia el juego
+characterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
+        selectedCharacter = btn.dataset.character;
 
         // Resaltar visualmente el personaje seleccionado
+        characterButtons.forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
 
         // Opcional: pequeña pausa para el efecto
@@ -80,8 +59,8 @@ function startGame() {
     }
 
     // Ocultar pantalla de selección y mostrar la historia
-    storyTitle.classList.add('hidden');
-    passageContainer.classList.remove('hidden');
+    document.getElementById('story-title').classList.add('hidden');
+    document.getElementById('passage-container').classList.remove('hidden');
 
     // Cargar primer pasaje
     loadPassage(storyData.startPassage);
@@ -110,6 +89,7 @@ function loadPassage(passageName) {
         const textDiv = document.createElement('div');
         let modifiedText = passage.text;
         
+        // Replace character names with player-provided names
         if (playerName && friendName) {
             modifiedText = replaceCharacterNames(modifiedText);
         }
@@ -135,6 +115,7 @@ function loadPassage(passageName) {
         const text2Div = document.createElement('div');
         let modifiedText2 = passage.text2;
         
+        // Replace character names with player-provided names
         if (playerName && friendName) {
             modifiedText2 = replaceCharacterNames(modifiedText2);
         }
@@ -156,6 +137,7 @@ function loadPassage(passageName) {
         const text3Div = document.createElement('div');
         let modifiedText3 = passage.text3;
         
+        // Replace character names with player-provided names
         if (playerName && friendName) {
             modifiedText3 = replaceCharacterNames(modifiedText3);
         }
@@ -346,6 +328,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+// Function to replace character names in the text
 function replaceCharacterNames(text) {
     let modifiedText = text.replace(/Gabriel/g, playerName)
                            .replace(/GABRIEL/g, playerName.toUpperCase())
