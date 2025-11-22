@@ -17,6 +17,25 @@ const callsound = document.getElementById('call-sound');
 
 const characterButtons = document.querySelectorAll('.character-btn');
 
+// --- VIDEO INICIAL --- //
+const introScreen = document.getElementById("intro-screen");
+const introVideo = document.getElementById("intro-start-video");
+const continueBtn = document.getElementById("continue-btn");
+
+// Ocultar el juego mientras el video está activo
+document.getElementById("game-container").classList.add("hidden");
+
+// Cuando se presiona "Continuar"
+continueBtn.addEventListener("click", () => {
+    introVideo.pause();
+    introScreen.classList.add("hidden");
+
+    // Ahora el juego aparece
+    document.getElementById("game-container").classList.remove("hidden");
+
+    // Aquí arranca el menú del juego
+    loadPassage(storyData.startPassage);
+
 // Game state
 let currentPassage = null;
 let gameHistory = [];
