@@ -6,27 +6,48 @@
     <title>Urbes Subumbra</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-    <!-- VIDEO INTRO 1 -->
-    <div id="video-intro" class="video-screen">
-        <video id="video-uno" src="videos/Abistamiento.mp4"></video>
-        <button id="btn-continuar-1" class="video-btn">Continuar</button>
+    <!-- LOADING SCREEN -->
+    <div id="loading-screen">
+        <div class="loader"></div>
+        <p>Cargando...</p>
     </div>
 
-    <!-- VIDEO NOTICIERO 2 -->
-    <div id="video-noticiero" class="video-screen hidden">
-        <video id="video-dos" src="videos/Noticiero.mp4"></video>
-        <button id="btn-continuar-2" class="video-btn">Continuar</button>
+    <!-- PANTALLA DE VIDEO INICIAL -->
+    <div id="video-screen" class="hidden">
+        <video id="intro-video" src="imagenes/Intro.mp4" playsinline></video>
+        <button id="continue-btn">Continuar</button>
     </div>
 
-    <!-- CONTENEDOR PRINCIPAL -->
+    <!-- CONTENEDOR PRINCIPAL DEL JUEGO -->
     <div id="game-container" class="hidden">   
+
+        <!-- pantalla de título + selección de personaje -->
         <div id="story-title">
             <h1>Urbes Subumbra</h1>
+
+            <div id="character-select">
+                <p>Elige tu personaje:</p>
+
+                <div class="character-grid">
+
+                    <button class="character-btn" data-character="Gabriel">
+                        <img src="imagenes/gabriel.jpg" class="character-img" alt="Gabriel">
+                        <span>Gabriel</span>
+                    </button>
+
+                    <button class="character-btn" data-character="Edward">
+                        <img src="imagenes/edward.jpg" class="character-img" alt="Edward">
+                        <span>Edward</span>
+                    </button>
+
+                </div>
+            </div>
         </div>
 
-        <div id="passage-container">
+        <div id="passage-container" class="hidden">
             <div id="passage-content"></div>
             <div id="passage-choices"></div>
         </div>
@@ -34,7 +55,6 @@
 
     <div id="light-flash" class="hidden"></div>
 
-    <!-- AUDIOS -->
     <audio id="ghost-scream" src="sounds/terror-scream-grito-terror-101302.mp3" preload="auto"></audio>
     <audio id="step-sound" src="sounds/pasos-suaves-02-68341.mp3" preload="auto"></audio>
     <audio id="run-sound" src="sounds/corriendo.mp3" preload="auto"></audio>
@@ -49,5 +69,25 @@
 
     <script src="story-data.js"></script>
     <script src="game-engine.js"></script>
+
+    <script>
+        const loadingScreen = document.getElementById('loading-screen');
+        const videoScreen = document.getElementById('video-screen');
+        const introVideo = document.getElementById('intro-video');
+        const continueBtn = document.getElementById('continue-btn');
+        const gameContainer = document.getElementById('game-container');
+
+        introVideo.addEventListener('loadeddata', () => {
+            loadingScreen.classList.add('hidden');
+            videoScreen.classList.remove('hidden');
+            introVideo.play();
+        });
+
+        continueBtn.addEventListener('click', () => {
+            videoScreen.classList.add("hidden");
+            gameContainer.classList.remove("hidden");
+        });
+    </script>
+
 </body>
 </html>
